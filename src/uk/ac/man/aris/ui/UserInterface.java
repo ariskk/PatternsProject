@@ -6,6 +6,7 @@
 
 package uk.ac.man.aris.ui;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -16,28 +17,38 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.JTextPane;
 
 /**
- * A Bank System dumb interface that has no external dependencies and is manipulated by a controller
+ * A Payment System dumb interface that has no external dependencies and is manipulated by a controller
  * 
  * @author aris
  */
 public class UserInterface extends JFrame {
     
+   /* GUI Component declarations */  
    private final JPanel mainPanel;
    private final JButton submitButton;
-   private final JTextField cardNumber;
+   private final JTextField cardNumberField;
    private final JTextField firstNameField;
+   private final JTextField lastNameField;
+   private final JLabel cardNumberLabel;
    private final JLabel firstNameLabel;
+   private final JLabel lastNameLabel;
    private final JLabel messageArea;
-   
+  
+   /* No argument constructor */
    public UserInterface () {
    mainPanel=new JPanel();
    submitButton=new JButton();
-   cardNumber=new JTextField();
+   cardNumberField=new JTextField(30);
+   cardNumberLabel=new JLabel("<html><b>Card Number:</b></html>");
    firstNameField=new JTextField(30);
    firstNameLabel=new JLabel("<html><b>First Name:</b></html>");
+   lastNameField=new JTextField(30);
+   lastNameLabel=new JLabel("<html><b>Last Name:</b></html>");
    messageArea=new JLabel("Welcome to UoM On-line Banking System");
+  
    initComponents();
    
    }
@@ -67,8 +78,27 @@ public class UserInterface extends JFrame {
         mainPanel.add(firstNameField,con);
         
         con.gridx=0;
+        con.gridy=1;
+        con.weightx=1.0;
+        con.weighty=1.0;
+        mainPanel.add(lastNameLabel,con);
+        con.gridx=1;
+        con.weightx=3.0;
+        mainPanel.add(lastNameField,con);
+        
+        con.gridx=0;
         con.gridy=2;
+        con.weightx=1.0;
+        con.weighty=1.0;
+        mainPanel.add(cardNumberLabel,con);
+        con.gridx=1;
+        con.weightx=3.0;
+        mainPanel.add(cardNumberField,con);
+        
+        con.gridx=0;
+        con.gridy=3;
         con.weighty=4.0;
+       
         mainPanel.add(messageArea,con);
         
        
