@@ -16,6 +16,7 @@ public class TestMain {
     public static void main (String[] args) {
     
     UserInterface ui=new UserInterface();
+    ui.setMessage("test message");
     ui.setVisible(true);
     
     

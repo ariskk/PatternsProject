@@ -18,7 +18,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 /**
- *
+ * A Bank System dumb interface that has no external dependencies and is manipulated by a controller
+ * 
  * @author aris
  */
 public class UserInterface extends JFrame {
@@ -42,7 +43,7 @@ public class UserInterface extends JFrame {
    }
     
    
-   
+   /*  GUI componets initialization*/
   private void initComponents(){
          /* Set-Up frame size and position  */
          this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -82,6 +83,7 @@ public class UserInterface extends JFrame {
    
    }
   
+ /* GUI methods to get information and set messages areas*/
   
   /* Getters            */
   public String getCreditCard(){
@@ -91,4 +93,16 @@ public class UserInterface extends JFrame {
   public String getFirstName(){
   return "";}
   
+  /* Setters*/
+  
+  public void setMessage(String msg){
+  messageArea.setText(msg);
+  
+  }
+  /* External classes can GUI listeners to implement an observer pattern    */
+  public void addListeners(){
+  
+  
+  
+  }
 }
