@@ -10,7 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- *
+ * A GUI listener to listen to Button Events and trigger the appropriate actions
  * @author aris
  */
  class GuiListener implements ActionListener{

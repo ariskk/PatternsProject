@@ -7,10 +7,11 @@
 package uk.ac.man.aris.init;
 
 import uk.ac.man.aris.controller.Controller;
+import uk.ac.man.aris.model.Model;
 import uk.ac.man.aris.ui.UserInterface;
 
 /**
- * Initialization
+ * Initialization class: Starts project's main thread
  * @author aris
  */
 public class Initializer {
@@ -23,8 +24,9 @@ public class Initializer {
         //init gui
         UserInterface ui=new UserInterface();
         ui.setVisible(true);
-        Controller con=new Controller(ui);
-    
+        Model mod=new Model();
+        Controller con=new Controller(ui,mod);
+        
     
     }
     

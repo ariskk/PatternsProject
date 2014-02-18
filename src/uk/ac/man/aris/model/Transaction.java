@@ -7,14 +7,15 @@
 package uk.ac.man.aris.model;
 
 /**
- * Model class that exposes the backend of the application to the Controller
+ * A transaction class
  * @author aris
  */
-public class Model {
+public class Transaction {
     
-    public Model(){
+    public Transaction(){
     
     }
     
+    public Transaction(String ID){}
     
 }
