@@ -11,6 +11,7 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Toolkit;
+import java.awt.event.ActionListener;
 import java.util.HashSet;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -129,8 +130,9 @@ public class UserInterface extends JFrame {
   messageArea.setText(msg);
   
   }
-  /* External classes can GUI listeners to implement an observer pattern    */
-  public void addListeners(){
+  /* External classes can place GUI listeners to implement an observer pattern    */
+  public void addListeners(ActionListener act){
+      submitButton.addActionListener(act);
   
   
   
