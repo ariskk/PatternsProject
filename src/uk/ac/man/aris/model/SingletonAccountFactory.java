@@ -21,10 +21,14 @@ public class SingletonAccountFactory {
 
 
 public Account getAccount(String ID,String pass){
- 
+ //check account
+    //if cred ok
+    //get the rest
 
 
 return null;
 }
+
+
 
 }

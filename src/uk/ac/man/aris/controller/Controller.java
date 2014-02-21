@@ -7,7 +7,7 @@
 package uk.ac.man.aris.controller;
 
 import uk.ac.man.aris.model.Model;
-import uk.ac.man.aris.ui.UserInterface;
+import uk.ac.man.aris.ui.mainFrame;
 
 /**
  * Initialize the Controller class that mediates between the UI and the Model/DB
@@ -19,8 +19,8 @@ public class Controller {
     throw new ExceptionInInitializerError("No User Interface found!");
     }
     
-   public Controller(final UserInterface ui,final Model mod){
-   ui.addListeners(new GuiListener());
+   public Controller(final mainFrame mainF,final Model mod){
+   //mainF.addListeners(new GuiListener());
    }
 
 

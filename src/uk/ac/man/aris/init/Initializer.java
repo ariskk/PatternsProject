@@ -8,7 +8,8 @@ package uk.ac.man.aris.init;
 
 import uk.ac.man.aris.controller.Controller;
 import uk.ac.man.aris.model.Model;
-import uk.ac.man.aris.ui.UserInterface;
+import uk.ac.man.aris.ui.LoginScreen;
+import uk.ac.man.aris.ui.mainFrame;
 
 /**
  * Initialization class: Starts project's main thread
@@ -19,15 +20,11 @@ public class Initializer {
     
     public static void main (String[] args){
     
-        //init db
-        //controller
-        //init gui
-        UserInterface ui=new UserInterface();
-        ui.setVisible(true);
+        mainFrame main=new mainFrame();
+        main.setPanel(new LoginScreen());
+        main.setVisible(true);
         Model mod=new Model();
-        Controller con=new Controller(ui,mod);
-        
-    
-    }
+        Controller con=new Controller(main,mod);
+        }
     
 }
