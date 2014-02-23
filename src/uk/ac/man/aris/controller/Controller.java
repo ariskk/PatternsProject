@@ -38,24 +38,29 @@ public class Controller implements ActionListener {
     public void actionPerformed(ActionEvent e) {
           switch(e.getActionCommand()){
             case "Login":{
-              
+              //check to db
              System.out.println(((LoginScreen)mainF.getPanel()).getUsername());
              System.out.println(((LoginScreen)mainF.getPanel()).getPassword());
              
               mainF.setPanel(new UserInterface());
               mainF.addUIListeners(this);
               
-            }
+            }break;
             case "Convert":{
+             System.out.println(((UserInterface)mainF.getPanel()).getFromCurrency());
+             System.out.println(((UserInterface)mainF.getPanel()).getToCurrency());
+            System.out.println( ((UserInterface)mainF.getPanel()).getConversionAmount());
+             //check enough funds and convert
             
-            
-            }
+            }break;
             case "Submit":{
+             ((UserInterface)mainF.getPanel()).getSubmitCurrency();
+             ((UserInterface)mainF.getPanel()).getSubmissionAmount();
+             ((UserInterface)mainF.getPanel()).getSubmissionUsername();
+             //check user exists deposit and set message
             
             
-            
-            
-            }
+            }break;
     }}
 
 

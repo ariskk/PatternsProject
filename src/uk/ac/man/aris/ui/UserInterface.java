@@ -16,7 +16,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 /**
- *
+ * TODO : messages next to buttons and maybe transaction history
  * @author mbaxkak4
  */
 public class UserInterface extends JPanel{
@@ -45,7 +45,7 @@ public class UserInterface extends JPanel{
     funds=new JLabel("Amount");
     messages=new JTextArea();
     from=new JTextField(7);
-    to=new JTextField(7);
+    to=new JTextField(7); 
     amount=new JTextField(7);
     targetAccount=new JTextField(7);
     convertButton=new JButton("Convert");
@@ -84,9 +84,12 @@ public class UserInterface extends JPanel{
         this.add(dropdownCurrencyTo,con);
         con.gridx=5;
         this.add(to,con);
-        /*Submit payments*/
         con.gridx=0;
         con.gridy=2;
+        this.add(convertButton,con);
+        /*Submit payments*/
+        con.gridx=0;
+        con.gridy=3;
         this.add(submit,con);
         con.gridx=1;
         this.add(targetAccount,con);
@@ -98,11 +101,7 @@ public class UserInterface extends JPanel{
         this.add(dropdownCurrencySubmit,con);
         con.gridx=5;
         this.add(amount,con);
-        
-        
-        
-        /*Buttons*/
-        con.gridy=3;
+        con.gridy=4;
         con.gridx=0;
         this.add(submitButton,con);
         
@@ -129,4 +128,12 @@ public class UserInterface extends JPanel{
     
     public String getSubmitCurrency(){
         return String.valueOf(dropdownCurrencySubmit.getSelectedItem());}
+    
+    public double getConversionAmount(){
+    return Double.parseDouble(from.getText());}
+    public double getSubmissionAmount(){
+    return Double.parseDouble(amount.getText());}
+    
+    public String getSubmissionUsername(){
+    return targetAccount.getText();}
 }
