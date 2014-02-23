@@ -11,10 +11,17 @@ package uk.ac.man.aris.model;
  * @author aris
  */
 public class Model {
+    private final double euroToDollarRate=1.37;
+    private final double euroToPoundRate=0.83;
+    private final double dollarToPoundRate=0.60;
     
     public Model(){
     
     }
+    //forward transactions to model classes
     
+    
+    public String authenticate(){
+    return null;}
     
 }

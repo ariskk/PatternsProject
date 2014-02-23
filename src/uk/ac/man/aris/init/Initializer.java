@@ -9,6 +9,7 @@ package uk.ac.man.aris.init;
 import uk.ac.man.aris.controller.Controller;
 import uk.ac.man.aris.model.Model;
 import uk.ac.man.aris.ui.LoginScreen;
+import uk.ac.man.aris.ui.UserInterface;
 import uk.ac.man.aris.ui.mainFrame;
 
 /**
@@ -21,7 +22,7 @@ public class Initializer {
     public static void main (String[] args){
     
         mainFrame main=new mainFrame();
-        main.setPanel(new LoginScreen());
+        main.setPanel(new UserInterface());
         main.setVisible(true);
         Model mod=new Model();
         Controller con=new Controller(main,mod);

@@ -7,14 +7,15 @@
 package uk.ac.man.aris.ui;
 
 
-import java.awt.Dimension;
+
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
+
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -43,8 +44,13 @@ public class LoginScreen extends JPanel{
    /* No argument constructor */
    public LoginScreen () {
    
-   submitButton=new JButton("Sumbit");
+   submitButton=new JButton("Login");
    cancelButton=new JButton("Cancel");
+    cancelButton.addActionListener(new ActionListener(){
+             @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            } });
    usernameField=new JTextField(30);
    usernameLabel=new JLabel("<html><b>Username:</b></html>");
    passField=new JPasswordField(30);
@@ -90,6 +96,7 @@ public class LoginScreen extends JPanel{
         con.gridx=1;
         con.weightx=3.0;
         this.add(cancelButton,con);
+       
         
         con.gridx=0;
         con.gridy=3;
@@ -118,7 +125,7 @@ public class LoginScreen extends JPanel{
   messageArea.setText(msg);
   }
   /* External classes can place GUI listeners to implement an observer pattern    */
-  public void addListeners(ActionListener act){
+  protected void addListeners(ActionListener act){
       submitButton.addActionListener(act);
   }
 }

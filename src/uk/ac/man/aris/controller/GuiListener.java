@@ -18,15 +18,22 @@ import java.awt.event.ActionListener;
     @Override
     public void actionPerformed(ActionEvent e) {
         switch(e.getActionCommand()){
-            case "1":{
+            case "Login":{
+                //Todo :check login 
+                
             
             
             }
-            case "2":{
+            case "Convert":{
             
             
             }
-        
+            case "Submit":{
+            
+            
+            
+            
+            }
         
         
         

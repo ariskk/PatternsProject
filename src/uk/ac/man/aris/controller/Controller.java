@@ -6,6 +6,7 @@
 
 package uk.ac.man.aris.controller;
 
+
 import uk.ac.man.aris.model.Model;
 import uk.ac.man.aris.ui.mainFrame;
 
@@ -14,13 +15,17 @@ import uk.ac.man.aris.ui.mainFrame;
  * @author aris
  */
 public class Controller {
+    private mainFrame mainF;
+    private Model model;
+    
     /*No Argument Constructor throws Exception*/
     public Controller(){
     throw new ExceptionInInitializerError("No User Interface found!");
     }
     
    public Controller(final mainFrame mainF,final Model mod){
-   //mainF.addListeners(new GuiListener());
+     this.mainF=mainF;
+     this.model=mod;
    }
 
 

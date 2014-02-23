@@ -36,7 +36,7 @@ public class Account {
     
     public static void setPounds(double gbp){
     balancePounds=gbp;}
-    public static double getPounds(){return 0;}
+    public static double getPounds(){return balancePounds;}
     
     
     //something smarter

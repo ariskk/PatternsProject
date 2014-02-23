@@ -6,6 +6,7 @@ package uk.ac.man.aris.ui;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -36,4 +37,8 @@ public final class mainFrame extends JFrame{
     
     }
     
+ public void addLoginListeners(ActionListener act){
+ ((LoginScreen)ActivePanel).addListeners(act);}
+ public void addUIListeners(ActionListener act){
+ ((UserInterface)ActivePanel).addListeners(act);}
 }
