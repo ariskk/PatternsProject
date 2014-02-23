@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 public class Account {
     
-    private final String id;
+    private final String username;
     private static double balanceDollars;
     private static double balanceEuros;
     private static double balancePounds;
@@ -24,7 +24,7 @@ public class Account {
         throw new Exception("ID must be initialised");
     }
     public Account(String ID){
-    this.id=ID;}
+    this.username=ID;}
     
     public static void setDollars(double dol){
     balanceDollars=dol;}

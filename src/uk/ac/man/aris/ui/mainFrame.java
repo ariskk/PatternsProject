@@ -20,10 +20,14 @@ public final class mainFrame extends JFrame{
     public void setPanel(JPanel panel){
         setUpFrame();
         ActivePanel=panel;
-        this.add(panel);
+        this.setContentPane(panel);
+        this.setVisible(true);
     }
     public JPanel getPanel(){
-        return ActivePanel;
+        if(ActivePanel instanceof LoginScreen){
+        return (LoginScreen) ActivePanel;}
+        else{
+        return (UserInterface) ActivePanel;}
     }
     
     private void setUpFrame(){

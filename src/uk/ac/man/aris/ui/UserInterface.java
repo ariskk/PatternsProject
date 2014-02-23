@@ -7,6 +7,7 @@ package uk.ac.man.aris.ui;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionListener;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -23,6 +24,8 @@ public class UserInterface extends JPanel{
     private final JLabel convert;
     private final JLabel submit;
     private final JLabel toLabel;
+    private final JLabel funds;
+    private final JTextArea messages;
     private final JTextField from;
     private final JTextField to;
     private final JTextField amount;
@@ -35,14 +38,16 @@ public class UserInterface extends JPanel{
     private final String[] currencies= {"Euros","Dollars","Pounds"};
     
     public UserInterface(){
-    title=new JLabel("");
-    convert=new JLabel("Convert");
+    title=new JLabel(new ImageIcon("logo.jpg"));
+    convert=new JLabel("Convert currencies :");
     submit=new JLabel("Submit funds to Account:");
     toLabel=new JLabel("to");
-    from=new JTextField(10);
-    to=new JTextField(10);
-    amount=new JTextField(10);
-    targetAccount=new JTextField(10);
+    funds=new JLabel("Amount");
+    messages=new JTextArea();
+    from=new JTextField(7);
+    to=new JTextField(7);
+    amount=new JTextField(7);
+    targetAccount=new JTextField(7);
     convertButton=new JButton("Convert");
     submitButton=new JButton("Submit");
     dropdownCurrencyFrom=new JComboBox(currencies);
@@ -52,15 +57,17 @@ public class UserInterface extends JPanel{
     }
     
     private void initComponents(){
-    
+        
+        
         /*Set-up Frame's Grid Layout   */
         this.setLayout(new GridBagLayout());
         GridBagConstraints con = new GridBagConstraints();
+       
        /*Title*/
-        con.gridx=0;
-        con.gridy=0;
-        con.weightx=5.0;
+         con.gridx=1;
+         con.gridy=0;
         this.add(title,con);
+        
         /* Convert currencies*/
         con.gridx=0;
         con.gridy=1;
@@ -84,15 +91,21 @@ public class UserInterface extends JPanel{
         con.gridx=1;
         this.add(targetAccount,con);
         con.gridx=2;
-        this.add(dropdownCurrencySubmit,con);
+        this.add(new JLabel(""),con);
         con.gridx=3;
+        this.add(funds,con);
+        con.gridx=4;
+        this.add(dropdownCurrencySubmit,con);
+        con.gridx=5;
         this.add(amount,con);
+        
         
         
         /*Buttons*/
         con.gridy=3;
         con.gridx=0;
         this.add(submitButton,con);
+        
         
     }
     
@@ -104,6 +117,9 @@ public class UserInterface extends JPanel{
     public void setTitle(String titleMsg){
     title.setText(titleMsg);
     }
+    
+    public void setMessage(String msg){
+    messages.setText(msg);}
     
     public String getFromCurrency(){
         return String.valueOf(dropdownCurrencyFrom.getSelectedItem());}
