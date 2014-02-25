@@ -21,9 +21,8 @@ public class Transaction {
     private  final Timestamp time;
     
     public Transaction() throws Exception{
-        throw new Exception("NUll constructor not allowd");
-    
-    }
+        throw new Exception("NUll constructor not allowed");
+     }
     
     public Transaction(String from,String to,double dol,double eur,double gbp,Timestamp time){
     this.fromID=from;

@@ -7,7 +7,7 @@
 package uk.ac.man.aris.dao;
 
 /**
- *
+ * An abstract DAO factory
  * @author aris
  */
 public abstract class DAOFactory {
@@ -23,6 +23,8 @@ public abstract class DAOFactory {
     switch (type){
         case SQLite :
         return new SQLiteDAOFactory();
+        case MySQL :
+        return null;
        /*A case can be added here for each supported type of database*/
         default :
         return null;

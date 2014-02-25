@@ -13,5 +13,5 @@ package uk.ac.man.aris.dao;
 public interface AccountDAO {
     public Account getAccount(String username);
     public void upedateAccount(String toUsername,double dollars,double euros,double pounds);
-    
+    public void createAccount();
 }

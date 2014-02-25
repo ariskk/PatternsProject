@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 public interface TransactionDAO {
     
-   public int createTransaction();
+   public void createTransaction(String username,String toUsername,double dollars,double euros,double pounds);
    public Transaction getTransaction();
    public ArrayList<Transaction> getTransactions(String user);
     

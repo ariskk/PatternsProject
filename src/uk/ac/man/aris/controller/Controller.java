@@ -40,18 +40,17 @@ public class Controller implements ActionListener {
     public void actionPerformed(ActionEvent e) {
           switch(e.getActionCommand()){
             case "Login":{
-              //check to db
-             System.out.println(((LoginScreen)mainF.getPanel()).getUsername());
-             System.out.println(((LoginScreen)mainF.getPanel()).getPassword());
-             if(Authentication.authenticate(((LoginScreen)mainF.getPanel()).getUsername(),((LoginScreen)mainF.getPanel()).getPassword())){
+              
+              if(Authentication.authenticate(((LoginScreen)mainF.getPanel()).getUsername(),((LoginScreen)mainF.getPanel()).getPassword())){
               mainF.setPanel(new UserInterface());
               mainF.addUIListeners(this);}
-              
-            }break;
+              }break;
+                
             case "Convert":{
+                
              System.out.println(((UserInterface)mainF.getPanel()).getFromCurrency());
              System.out.println(((UserInterface)mainF.getPanel()).getToCurrency());
-            System.out.println( ((UserInterface)mainF.getPanel()).getConversionAmount());
+             System.out.println( ((UserInterface)mainF.getPanel()).getConversionAmount());
              //check enough funds and convert
             
             }break;
@@ -64,11 +63,6 @@ public class Controller implements ActionListener {
             
             }break;
     }}
-
-
-
-
-
 
 }
 

@@ -23,6 +23,7 @@ public class Account {
     public Account() throws Exception{
         throw new Exception("ID must be initialised");
     }
+    
     public Account(String ID,double dol,double eur,double gbp,ArrayList<Transaction> array){
     this.username=ID;
     this.balanceDollars=dol;
@@ -48,7 +49,6 @@ public class Account {
     /*TODO
      * transaction new transaction ktl and add it */}
     public  ArrayList getTranscations(){
-        
     return transactions;}
     
 }

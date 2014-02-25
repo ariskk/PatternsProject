@@ -8,6 +8,7 @@ package uk.ac.man.aris.dao;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 
@@ -42,29 +43,32 @@ public class SQLiteAccountDAO implements AccountDAO {
           //Transctions
        
            
-               }
+             }
            rs.close();
            stmt.close();
            c.close();}
-        catch (Exception e){
-                }
+        catch (SQLException e){
+                               }
         return new Account(username,dollars,euros,pounds,null);
     }
 
     @Override
     public void upedateAccount(String toUsername,double dollars,double euros,double pounds) {
-      //TRANSACTION UPDATE THIS METHOD MUST BE NULL AND THIS MOVED TO TRANSACTION DAO
+     
         try {  
           Statement stmt = c.createStatement();
           //long time=Timestamp.getTime();
-          stmt.executeQuery("INSERT INTO Transactions (fromUser,toUser,timestamp,amountDollars,amountEuros,AmountPounds) VALUES ('"+username+"','"+
-                             toUsername+"','"+0+"','"+dollars+"','"+euros+"','"+pounds+"');");
-          
-           
+          stmt.executeQuery("INSERT INTO Accounts (username,amountDollars,amountEuros,AmountPounds) VALUES ('"+username+"','"+
+                             "','"+dollars+"','"+euros+"','"+pounds+"');");
            stmt.close();
            c.close();}
-        catch (Exception e){
+        catch (SQLException e){
                 }
+    }
+
+    @Override
+    public void createAccount() {
+        throw new UnsupportedOperationException("Not supported yet."); //Not supported,since there is no register UI
     }
     
 }
