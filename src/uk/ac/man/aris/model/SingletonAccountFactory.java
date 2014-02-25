@@ -4,6 +4,8 @@
  */
 package uk.ac.man.aris.model;
 
+import uk.ac.man.aris.dao.Account;
+
 /**
  *
  * @author mbaxkak4

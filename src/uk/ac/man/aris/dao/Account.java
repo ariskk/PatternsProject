@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package uk.ac.man.aris.model;
+package uk.ac.man.aris.dao;
 
 import java.util.ArrayList;
 

@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package uk.ac.man.aris.db;
+package uk.ac.man.aris.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
