@@ -15,35 +15,39 @@ import java.util.ArrayList;
 public class Account {
     
     private final String username;
-    private static double balanceDollars;
-    private static double balanceEuros;
-    private static double balancePounds;
-    private static ArrayList<Transaction> transactions;
+    private  double balanceDollars;
+    private  double balanceEuros;
+    private  double balancePounds;
+    private  ArrayList<Transaction> transactions;
             
     public Account() throws Exception{
         throw new Exception("ID must be initialised");
     }
-    public Account(String ID){
-    this.username=ID;}
+    public Account(String ID,double dol,double eur,double gbp,ArrayList<Transaction> array){
+    this.username=ID;
+    this.balanceDollars=dol;
+    this.balanceEuros=eur;
+    this.balancePounds=gbp;
+    this.transactions=array;}
     
-    public static void setDollars(double dol){
+    public  void setDollars(double dol){
     balanceDollars=dol;}
-    public static double getDollars(){return balanceDollars;}
+    public  double getDollars(){return balanceDollars;}
     
-    public static void setEuros(double eur){
+    public  void setEuros(double eur){
     balanceEuros=eur;}
-    public static double getEuros(){return balanceEuros;}
+    public  double getEuros(){return balanceEuros;}
     
-    public static void setPounds(double gbp){
+    public  void setPounds(double gbp){
     balancePounds=gbp;}
-    public static double getPounds(){return balancePounds;}
+    public  double getPounds(){return balancePounds;}
     
     
     //something smarter
     public static void addTransaction(){
     /*TODO
      * transaction new transaction ktl and add it */}
-    public static ArrayList getTranscations(){
+    public  ArrayList getTranscations(){
         
     return transactions;}
     

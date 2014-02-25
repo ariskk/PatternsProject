@@ -11,7 +11,7 @@ package uk.ac.man.aris.dao;
  * @author aris
  */
 public interface AccountDAO {
-    public Account getAccount();
+    public Account getAccount(String username);
     public void upedateAccount();
     
 }

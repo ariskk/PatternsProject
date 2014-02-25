@@ -31,13 +31,13 @@ public class SQLiteDAOFactory extends DAOFactory {
         
         
     @Override
-    public AccountDAO getAccountDAO() {
-        return new AccountDAO();
+    public AccountDAO getAccountDAO(String username) {
+        return new SQLiteAccountDAO(username);
     }
 
     @Override
-    public TranscationDAO getTranscactionDAO() {
-       return new TranscationDAO();
+    public TransactionDAO getTranscactionDAO() {
+       return new SQLiteTransactionDAO();
     }
     
 }

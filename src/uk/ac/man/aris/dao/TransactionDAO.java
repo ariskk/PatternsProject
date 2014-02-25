@@ -12,7 +12,7 @@ import java.util.ArrayList;
  *
  * @author aris
  */
-public interface TranscationDAO {
+public interface TransactionDAO {
     
    public int createTransaction();
    public Transaction getTransaction();
