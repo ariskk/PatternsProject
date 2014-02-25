@@ -7,11 +7,11 @@
 package uk.ac.man.aris.dao;
 
 /**
- *
+ * Interface of the Account DAO .Every Database specific DAO must implement that interface
  * @author aris
  */
 public interface AccountDAO {
     public Account getAccount(String username);
-    public void upedateAccount();
+    public void upedateAccount(String toUsername,double dollars,double euros,double pounds);
     
 }

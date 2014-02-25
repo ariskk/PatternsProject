@@ -9,6 +9,7 @@ package uk.ac.man.aris.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import uk.ac.man.aris.dao.Authentication;
 import uk.ac.man.aris.model.Model;
 import uk.ac.man.aris.ui.LoginScreen;
 import uk.ac.man.aris.ui.UserInterface;
@@ -16,6 +17,7 @@ import uk.ac.man.aris.ui.mainFrame;
 
 /**
  * Initialize the Controller class that mediates between the UI and the Model/DB
+ * to do introduce a modeller to reduce coupling
  * @author aris
  */
 public class Controller implements ActionListener {
@@ -41,9 +43,9 @@ public class Controller implements ActionListener {
               //check to db
              System.out.println(((LoginScreen)mainF.getPanel()).getUsername());
              System.out.println(((LoginScreen)mainF.getPanel()).getPassword());
-             
+             if(Authentication.authenticate(((LoginScreen)mainF.getPanel()).getUsername(),((LoginScreen)mainF.getPanel()).getPassword())){
               mainF.setPanel(new UserInterface());
-              mainF.addUIListeners(this);
+              mainF.addUIListeners(this);}
               
             }break;
             case "Convert":{

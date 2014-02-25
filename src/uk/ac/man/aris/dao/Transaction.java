@@ -35,6 +35,30 @@ public class Transaction {
     
     }
     
+    /*Transaction Getters*/
     
+        public String getFromID() {
+        return fromID;
+    }
+
+    public String getToID() {
+        return toID;
+    }
+
+    public double getAmountDollars() {
+        return amountDollars;
+    }
+
+    public double getAmountEuros() {
+        return amountEuros;
+    }
+
+    public double getAmountPounds() {
+        return amountPounds;
+    }
+
+    public Timestamp getTime() {
+        return time;
+    }
     
 }

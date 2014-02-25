@@ -9,9 +9,12 @@ package uk.ac.man.aris.dao;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.sql.Timestamp;
 
 /**
- *
+ * Account DAO implementation for SQLite
+ * Accesses the SQLite to retrieve the account and create the account object. Called by the factory
+ * TODO ADD TRANSACTIONS and fix timestamp bug
  * @author aris
  */
 public class SQLiteAccountDAO implements AccountDAO {
@@ -25,34 +28,43 @@ public class SQLiteAccountDAO implements AccountDAO {
     
     @Override
     public Account getAccount(String username) {
-       try {  
+       double pounds=0,euros=0,dollars=0;
+       
+        try {  
           Statement stmt = c.createStatement();
-          ResultSet rs = stmt.executeQuery( "SELECT * FROM Accounts WHERE username="+username);
-      while ( rs.next() ) {
+          ResultSet rs = stmt.executeQuery( "SELECT * FROM Accounts WHERE username='" +username+"';");
+          while ( rs.next() ) {
          
-         String  name = rs.getString("username");
-         String pass=rs.getString("password");
-         double pounds=rs.getDouble("pounds");
-         double euros=rs.getDouble("euros");
-         double dollars=rs.getDouble("dolalrs");
-         
+           String pass=rs.getString("password");
+           pounds=rs.getDouble("pounds");
+           euros=rs.getDouble("euros");
+           dollars=rs.getDouble("dolalrs");
+          //Transctions
        
-         
-        
-         rs.close();
-         stmt.close();
-         c.close();
-      }}
-       
-       
-       catch (Exception e){
-       }
-        return null;
+           
+               }
+           rs.close();
+           stmt.close();
+           c.close();}
+        catch (Exception e){
+                }
+        return new Account(username,dollars,euros,pounds,null);
     }
 
     @Override
-    public void upedateAccount() {
-       
+    public void upedateAccount(String toUsername,double dollars,double euros,double pounds) {
+      //TRANSACTION UPDATE THIS METHOD MUST BE NULL AND THIS MOVED TO TRANSACTION DAO
+        try {  
+          Statement stmt = c.createStatement();
+          //long time=Timestamp.getTime();
+          stmt.executeQuery("INSERT INTO Transactions (fromUser,toUser,timestamp,amountDollars,amountEuros,AmountPounds) VALUES ('"+username+"','"+
+                             toUsername+"','"+0+"','"+dollars+"','"+euros+"','"+pounds+"');");
+          
+           
+           stmt.close();
+           c.close();}
+        catch (Exception e){
+                }
     }
     
 }

@@ -9,7 +9,7 @@ package uk.ac.man.aris.dao;
 import java.util.ArrayList;
 
 /**
- *
+ *Interface for Transaction DAO. Every database specific implementation must implement this interface
  * @author aris
  */
 public interface TransactionDAO {

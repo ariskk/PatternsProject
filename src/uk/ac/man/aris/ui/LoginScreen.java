@@ -117,7 +117,7 @@ public class LoginScreen extends JPanel{
   
   
   public String getPassword(){
-  return passField.getPassword().toString();}
+  return passField.getText().toString();}
   
   /* Setters*/
   

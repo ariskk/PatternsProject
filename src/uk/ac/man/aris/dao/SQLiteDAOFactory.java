@@ -10,7 +10,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 /**
- *
+ *Factory implementation for SQLite
+ * TODO: would be nice to implement a singleton db connection
  * @author aris
  */
 public class SQLiteDAOFactory extends DAOFactory {
