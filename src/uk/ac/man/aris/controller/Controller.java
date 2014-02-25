@@ -40,25 +40,29 @@ public class Controller implements ActionListener {
     public void actionPerformed(ActionEvent e) {
           switch(e.getActionCommand()){
             case "Login":{
-              
-              if(Authentication.authenticate(((LoginScreen)mainF.getPanel()).getUsername(),((LoginScreen)mainF.getPanel()).getPassword())){
+                
+               if(model.authenticate(((LoginScreen)mainF.getPanel()).getUsername(),((LoginScreen)mainF.getPanel()).getPassword())){
               mainF.setPanel(new UserInterface());
               mainF.addUIListeners(this);}
+              else{
+              ((LoginScreen)mainF.getPanel()).setMessage("Invalid Login Credentials");}
               }break;
                 
             case "Convert":{
-                
-             System.out.println(((UserInterface)mainF.getPanel()).getFromCurrency());
-             System.out.println(((UserInterface)mainF.getPanel()).getToCurrency());
-             System.out.println( ((UserInterface)mainF.getPanel()).getConversionAmount());
-             //check enough funds and convert
+              double result;
+              result = model.convert(((UserInterface)mainF.getPanel()).getFromCurrency(),((UserInterface)mainF.getPanel()).getToCurrency(), ((UserInterface)mainF.getPanel()).getConversionAmount());
+              if(result!=0){
+              ((UserInterface)mainF.getPanel()).setMessage(""+result);}
+              else{
+               ((UserInterface)mainF.getPanel()).setMessage("Not Enough funds to complete the conversion transaction");             }
             
             }break;
             case "Submit":{
-             ((UserInterface)mainF.getPanel()).getSubmitCurrency();
-             ((UserInterface)mainF.getPanel()).getSubmissionAmount();
-             ((UserInterface)mainF.getPanel()).getSubmissionUsername();
-             //check user exists deposit and set message
+                if(model.submit(((UserInterface)mainF.getPanel()).getSubmissionUsername(),((UserInterface)mainF.getPanel()).getSubmitCurrency(),((UserInterface)mainF.getPanel()).getSubmissionAmount()))
+                {((UserInterface)mainF.getPanel()).setMessage("Transaction completed successfully");  }
+                else
+                {((UserInterface)mainF.getPanel()).setMessage("Not Enough funds to complete the conversion transaction");  }
+             
             
             
             }break;
