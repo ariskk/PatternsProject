@@ -28,7 +28,7 @@ public class SQLiteAccountDAO implements AccountDAO {
     }
     
     @Override
-    public Account getAccount(String username) {
+    public Account getAccount() {
        double pounds=0,euros=0,dollars=0;
        
         try {  
@@ -36,13 +36,11 @@ public class SQLiteAccountDAO implements AccountDAO {
           ResultSet rs = stmt.executeQuery( "SELECT * FROM Accounts WHERE username='" +username+"';");
           while ( rs.next() ) {
          
-           String pass=rs.getString("password");
            pounds=rs.getDouble("pounds");
            euros=rs.getDouble("euros");
            dollars=rs.getDouble("dolalrs");
           //Transctions
        
-           
              }
            rs.close();
            stmt.close();
@@ -53,13 +51,13 @@ public class SQLiteAccountDAO implements AccountDAO {
     }
 
     @Override
-    public void upedateAccount(String toUsername,double dollars,double euros,double pounds) {
+    public void upedateAccount(Account acc) {
      
         try {  
           Statement stmt = c.createStatement();
           //long time=Timestamp.getTime();
-          stmt.executeQuery("INSERT INTO Accounts (username,amountDollars,amountEuros,AmountPounds) VALUES ('"+username+"','"+
-                             "','"+dollars+"','"+euros+"','"+pounds+"');");
+          stmt.executeQuery("INSERT INTO Accounts (username,amountDollars,amountEuros,AmountPounds) VALUES ('"+acc.getUsername()+"','"+
+                             "','"+acc.getDollars()+"','"+acc.getEuros()+"','"+acc.getPounds()+"');");
            stmt.close();
            c.close();}
         catch (SQLException e){

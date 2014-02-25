@@ -11,7 +11,7 @@ import java.sql.DriverManager;
 
 /**
  *Factory implementation for SQLite
- * Calls DAOs to get the Account and Transaction POJOs
+ * Calls DAOs to get the Account and Transaction DAOs
  * TODO: would be nice to implement a singleton db connection
  * @author aris
  */

@@ -9,12 +9,14 @@ package uk.ac.man.aris.dao;
 import java.util.ArrayList;
 
 /**
- * An account class
+ * An account class. Acts as a transfer object between high level client code and low level DAOs
  * @author aris
  */
 public class Account {
     
     private final String username;
+
+    
     private  double balanceDollars;
     private  double balanceEuros;
     private  double balancePounds;
@@ -30,6 +32,10 @@ public class Account {
     this.balanceEuros=eur;
     this.balancePounds=gbp;
     this.transactions=array;}
+    
+    public String getUsername() {
+        return username;
+    }
     
     public  void setDollars(double dol){
     balanceDollars=dol;}

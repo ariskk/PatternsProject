@@ -7,7 +7,7 @@ package uk.ac.man.aris.model;
 import uk.ac.man.aris.dao.Account;
 
 /**
- *
+ * Account Factory implemented as a Singleton patterns
  * @author mbaxkak4
  */
 public class SingletonAccountFactory {
@@ -22,11 +22,7 @@ public class SingletonAccountFactory {
     
 
 
-public Account getAccount(String ID,String pass){
- //check account
-    //if cred ok
-    //get the rest
-
+public Account getAccount(String ID){
 
 return null;
 }
