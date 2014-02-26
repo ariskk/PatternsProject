@@ -23,7 +23,7 @@ public class SQLiteTransactionDAO implements TransactionDAO {
     private final Connection c;
     
     public SQLiteTransactionDAO(){
-    c=SQLiteDAOFactory.createConnection();}
+    c=SQLiteConnectionSingleton.getConnection();}
     
     @Override
     public void createTransaction(String username,String toUsername,double dollars,double euros,double pounds) {

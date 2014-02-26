@@ -37,6 +37,7 @@ public class Model {
         if(Authentication.authenticate(username, password)){
         auth=true;
         account=accountDAO.getAccount(username);
+       // System.out.println(account.getUsername()+" "+account.getEuros());
         }
         return auth;}
     
@@ -65,7 +66,7 @@ public class Model {
              
              }
         
-        }
+        }break;
         case "Dollars":{
              if(account.getDollars()>amount){
                   switch (toCurrency) {
@@ -85,7 +86,7 @@ public class Model {
                          break;
                   }
              }
-        }
+        }break;
         case "Pounds":{
              if (account.getPounds()>amount){
                    switch (toCurrency) {

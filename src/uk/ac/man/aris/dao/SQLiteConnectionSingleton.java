@@ -7,16 +7,27 @@
 package uk.ac.man.aris.dao;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 
 /**
  *
  * @author aris
  */
 public class SQLiteConnectionSingleton {
-//    private static Connection c=null;
-//    public synchronized Connection getConnection(){
-//     if(c==null){
-//     
-//     }
-//    }
+    
+          private static Connection c;
+             
+    public static synchronized Connection getConnection(){
+        if(c==null){
+        try {
+             Class.forName("org.sqlite.JDBC");
+             c = DriverManager.getConnection("jdbc:sqlite:db/Patterns.db");
+             c.setAutoCommit(false);
+             System.out.println("Opened database successfully");
+               }
+        catch( Exception e ) {
+               System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+               
+                } }      
+          return c;}
 }

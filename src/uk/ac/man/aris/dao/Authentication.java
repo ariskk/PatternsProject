@@ -21,13 +21,9 @@ public final class Authentication {
     
      public static boolean authenticate( String username,String pass ){   
           boolean authenticate=false;
-          Connection c;
+          Connection c=SQLiteConnectionSingleton.getConnection();  
           Statement stmt;
     try {
-          Class.forName("org.sqlite.JDBC");
-          c = DriverManager.getConnection("jdbc:sqlite:db/Patterns.db");
-          c.setAutoCommit(false);
-          System.out.println("Opened database successfully");
 
          stmt = c.createStatement();
          ResultSet rs = stmt.executeQuery( "SELECT username,password FROM Accounts WHERE username='"+username+"';" );
@@ -44,7 +40,7 @@ public final class Authentication {
         
          rs.close();
          stmt.close();
-         c.close();
+         //c.close();
          }
       
          }

@@ -20,15 +20,15 @@ import java.sql.Timestamp;
  */
 public class SQLiteAccountDAO implements AccountDAO {
     private String username;
-    private final Connection c;
+    private  Connection c;
     
     public SQLiteAccountDAO(){
-    c=SQLiteDAOFactory.createConnection();
+    //c=SQLiteDAOFactory.createConnection();
     }
     
     public SQLiteAccountDAO(String username){
         this.username=username;
-        c=SQLiteDAOFactory.createConnection();
+        //c=SQLiteDAOFactory.createConnection();
     }
     
     @Override
@@ -37,6 +37,7 @@ public class SQLiteAccountDAO implements AccountDAO {
         double pounds=0,euros=0,dollars=0;
        
         try {  
+          c=SQLiteConnectionSingleton.getConnection();
           Statement stmt = c.createStatement();
           ResultSet rs = stmt.executeQuery( "SELECT * FROM Accounts WHERE username='" +user+"';");
           while ( rs.next() ) {
@@ -49,7 +50,8 @@ public class SQLiteAccountDAO implements AccountDAO {
              }
            rs.close();
            stmt.close();
-           c.close();}
+           //c.close();
+        }
         catch (SQLException e){
                                }
         return new Account(user,dollars,euros,pounds,null);
@@ -59,13 +61,15 @@ public class SQLiteAccountDAO implements AccountDAO {
     public void upedateAccount(Account acc) {
      
         try {  
+          c=SQLiteConnectionSingleton.getConnection();  
           Statement stmt = c.createStatement();
-          //long time=Timestamp.getTime();
-          stmt.executeQuery("UPDATE Accounts SET dollars="+acc.getDollars()+",euros="+acc.getEuros()+",pounds="+acc.getPounds()+
-                             "WHERE username='"+acc.getUsername()+"';");
-                 
+          
+          stmt.executeUpdate("UPDATE Accounts set dollars='"+acc.getDollars()+"',euros='"+acc.getEuros()+"',pounds='"+acc.getPounds()+
+                             "' WHERE username='"+acc.getUsername()+"';");
+           c.commit(); 
            stmt.close();
-           c.close();}
+           //c.close();
+        }
         catch (SQLException e){
                 }
     }
