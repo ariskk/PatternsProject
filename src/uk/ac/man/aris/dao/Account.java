@@ -52,8 +52,7 @@ public class Account {
     
     //something smarter
     public static void addTransaction(){
-    /*TODO
-     * transaction new transaction ktl and add it */}
+    }
     public  ArrayList getTranscations(){
     return transactions;}
     

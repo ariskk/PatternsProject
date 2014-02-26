@@ -16,7 +16,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 /**
- * TODO : messages next to buttons and maybe transaction history
+ * TODO : messages next to buttons and maybe transaction history 
  * @author mbaxkak4
  */
 public class UserInterface extends JPanel{
@@ -43,7 +43,7 @@ public class UserInterface extends JPanel{
     submit=new JLabel("Submit funds to Account:");
     toLabel=new JLabel("to");
     funds=new JLabel("Amount");
-    messages=new JTextArea();
+    messages=new JTextArea(7,4);
     from=new JTextField(7);
     to=new JTextField(7); 
     amount=new JTextField(7);
@@ -54,6 +54,7 @@ public class UserInterface extends JPanel{
     dropdownCurrencyTo=new JComboBox(currencies);
     dropdownCurrencySubmit=new JComboBox(currencies);
     initComponents();
+    
     }
     
     private void initComponents(){
@@ -104,6 +105,8 @@ public class UserInterface extends JPanel{
         con.gridy=4;
         con.gridx=0;
         this.add(submitButton,con);
+        con.gridy=5;
+      //  this.add(messages,con);
         
         
     }

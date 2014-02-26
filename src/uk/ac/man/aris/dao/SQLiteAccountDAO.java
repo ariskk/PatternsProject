@@ -19,8 +19,12 @@ import java.sql.Timestamp;
  * @author aris
  */
 public class SQLiteAccountDAO implements AccountDAO {
-    private final String username;
+    private String username;
     private final Connection c;
+    
+    public SQLiteAccountDAO(){
+    c=SQLiteDAOFactory.createConnection();
+    }
     
     public SQLiteAccountDAO(String username){
         this.username=username;
@@ -28,14 +32,15 @@ public class SQLiteAccountDAO implements AccountDAO {
     }
     
     @Override
-    public Account getAccount() {
-       double pounds=0,euros=0,dollars=0;
+    public Account getAccount(String user) {
+       
+        double pounds=0,euros=0,dollars=0;
        
         try {  
           Statement stmt = c.createStatement();
-          ResultSet rs = stmt.executeQuery( "SELECT * FROM Accounts WHERE username='" +username+"';");
+          ResultSet rs = stmt.executeQuery( "SELECT * FROM Accounts WHERE username='" +user+"';");
           while ( rs.next() ) {
-         
+           
            pounds=rs.getDouble("pounds");
            euros=rs.getDouble("euros");
            dollars=rs.getDouble("dolalrs");
@@ -47,7 +52,7 @@ public class SQLiteAccountDAO implements AccountDAO {
            c.close();}
         catch (SQLException e){
                                }
-        return new Account(username,dollars,euros,pounds,null);
+        return new Account(user,dollars,euros,pounds,null);
     }
 
     @Override
@@ -56,8 +61,9 @@ public class SQLiteAccountDAO implements AccountDAO {
         try {  
           Statement stmt = c.createStatement();
           //long time=Timestamp.getTime();
-          stmt.executeQuery("INSERT INTO Accounts (username,amountDollars,amountEuros,AmountPounds) VALUES ('"+acc.getUsername()+"','"+
-                             "','"+acc.getDollars()+"','"+acc.getEuros()+"','"+acc.getPounds()+"');");
+          stmt.executeQuery("UPDATE Accounts SET dollars="+acc.getDollars()+",euros="+acc.getEuros()+",pounds="+acc.getPounds()+
+                             "WHERE username='"+acc.getUsername()+"';");
+                 
            stmt.close();
            c.close();}
         catch (SQLException e){

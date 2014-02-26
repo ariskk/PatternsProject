@@ -16,7 +16,7 @@ public abstract class DAOFactory {
     public static final int SQLite=1;
     public static final int MySQL=2;
     
-    public abstract AccountDAO getAccountDAO(String username);
+    public abstract AccountDAO getAccountDAO();
     public abstract TransactionDAO getTranscactionDAO();
     
     public static DAOFactory getDAOFactory(int type){

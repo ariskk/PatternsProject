@@ -33,8 +33,8 @@ public class SQLiteDAOFactory extends DAOFactory {
         
         
     @Override
-    public AccountDAO getAccountDAO(String username) {
-        return new SQLiteAccountDAO(username);
+    public AccountDAO getAccountDAO() {
+        return new SQLiteAccountDAO();
     }
 
     @Override

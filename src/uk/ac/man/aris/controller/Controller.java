@@ -9,7 +9,6 @@ package uk.ac.man.aris.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import uk.ac.man.aris.dao.Authentication;
 import uk.ac.man.aris.model.Model;
 import uk.ac.man.aris.ui.LoginScreen;
 import uk.ac.man.aris.ui.UserInterface;
@@ -17,7 +16,7 @@ import uk.ac.man.aris.ui.mainFrame;
 
 /**
  * Initialize the Controller class that mediates between the UI and the Model/DB
- * to do introduce a modeller to reduce coupling
+ * to do introduce a modeler to reduce coupling
  * @author aris
  */
 public class Controller implements ActionListener {
@@ -43,7 +42,9 @@ public class Controller implements ActionListener {
                 
                if(model.authenticate(((LoginScreen)mainF.getPanel()).getUsername(),((LoginScreen)mainF.getPanel()).getPassword())){
               mainF.setPanel(new UserInterface());
-              mainF.addUIListeners(this);}
+              mainF.addUIListeners(this);
+              ((UserInterface)mainF.getPanel()).setMessage("The system is ready to accept transactions");
+               }
               else{
               ((LoginScreen)mainF.getPanel()).setMessage("Invalid Login Credentials");}
               }break;
@@ -52,20 +53,21 @@ public class Controller implements ActionListener {
               double result;
               result = model.convert(((UserInterface)mainF.getPanel()).getFromCurrency(),((UserInterface)mainF.getPanel()).getToCurrency(), ((UserInterface)mainF.getPanel()).getConversionAmount());
               if(result!=0){
-              ((UserInterface)mainF.getPanel()).setMessage(""+result);}
+              ((UserInterface)mainF.getPanel()).setMessage("Successfully purchaced"+result+" "+((UserInterface)mainF.getPanel()).getToCurrency());
+              System.out.println("success");}
               else{
-               ((UserInterface)mainF.getPanel()).setMessage("Not Enough funds to complete the conversion transaction");             }
+               ((UserInterface)mainF.getPanel()).setMessage("Not Enough funds");      
+              System.out.println("not success");}
             
             }break;
+                
             case "Submit":{
                 if(model.submit(((UserInterface)mainF.getPanel()).getSubmissionUsername(),((UserInterface)mainF.getPanel()).getSubmitCurrency(),((UserInterface)mainF.getPanel()).getSubmissionAmount()))
                 {((UserInterface)mainF.getPanel()).setMessage("Transaction completed successfully");  }
                 else
-                {((UserInterface)mainF.getPanel()).setMessage("Not Enough funds to complete the conversion transaction");  }
+                {((UserInterface)mainF.getPanel()).setMessage("Not Enough funds");  }
              
-            
-            
-            }break;
+             }break;
     }}
 
 }
