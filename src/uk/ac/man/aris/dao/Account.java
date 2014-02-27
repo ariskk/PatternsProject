@@ -50,7 +50,7 @@ public class Account {
     public  double getPounds(){return balancePounds;}
     
     
-    //something smarter
+   
     public static void addTransaction(){
     }
     public  ArrayList getTranscations(){

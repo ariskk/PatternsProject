@@ -122,6 +122,7 @@ public class Model {
               //add transaction update object
                accountDAO.upedateAccount(account);
                accountDAO.upedateAccount(clientAccount);
+               return true;
            }
         
         }
@@ -132,7 +133,7 @@ public class Model {
                
                accountDAO.upedateAccount(account);
                accountDAO.upedateAccount(clientAccount);
-               
+               return true;
            
            }
         }
@@ -143,6 +144,7 @@ public class Model {
                
                accountDAO.upedateAccount(account);
                accountDAO.upedateAccount(clientAccount);
+               return true;
            }
         
         }

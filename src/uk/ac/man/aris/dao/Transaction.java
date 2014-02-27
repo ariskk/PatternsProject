@@ -9,7 +9,7 @@ package uk.ac.man.aris.dao;
 import java.sql.Timestamp;
 
 /**
- * A transaction class
+ * A transaction transfer object. Immutable since a transaction has happened 
  * @author aris
  */
 public class Transaction {

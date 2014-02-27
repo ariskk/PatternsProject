@@ -4,6 +4,7 @@
  */
 package uk.ac.man.aris.ui;
 
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionListener;
@@ -27,7 +28,7 @@ public class UserInterface extends JPanel{
     private final JLabel funds;
     private final JTextArea messages;
     private final JTextField from;
-    private final JTextField to;
+    private final JLabel to;
     private final JTextField amount;
     private final JTextField targetAccount;
     private final JButton convertButton;
@@ -43,9 +44,9 @@ public class UserInterface extends JPanel{
     submit=new JLabel("Submit funds to Account:");
     toLabel=new JLabel("to");
     funds=new JLabel("Amount");
-    messages=new JTextArea(7,4);
+    messages=new JTextArea(5,19);
     from=new JTextField(7);
-    to=new JTextField(7); 
+    to=new JLabel(); 
     amount=new JTextField(7);
     targetAccount=new JTextField(7);
     convertButton=new JButton("Convert");
@@ -84,6 +85,7 @@ public class UserInterface extends JPanel{
         con.gridx=4;
         this.add(dropdownCurrencyTo,con);
         con.gridx=5;
+        to.setBackground(Color.white);
         this.add(to,con);
         con.gridx=0;
         con.gridy=2;
@@ -106,7 +108,7 @@ public class UserInterface extends JPanel{
         con.gridx=0;
         this.add(submitButton,con);
         con.gridy=5;
-      //  this.add(messages,con);
+        this.add(messages,con);
         
         
     }
@@ -122,6 +124,9 @@ public class UserInterface extends JPanel{
     
     public void setMessage(String msg){
     messages.setText(msg);}
+    
+    public void setToText(String txt){
+    to.setText(txt);}
     
     public String getFromCurrency(){
         return String.valueOf(dropdownCurrencyFrom.getSelectedItem());}

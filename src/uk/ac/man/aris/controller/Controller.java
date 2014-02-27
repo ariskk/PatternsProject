@@ -9,6 +9,7 @@ package uk.ac.man.aris.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
 import uk.ac.man.aris.model.Model;
 import uk.ac.man.aris.ui.LoginScreen;
 import uk.ac.man.aris.ui.UserInterface;
@@ -43,7 +44,7 @@ public class Controller implements ActionListener {
                if(model.authenticate(((LoginScreen)mainF.getPanel()).getUsername(),((LoginScreen)mainF.getPanel()).getPassword())){
               mainF.setPanel(new UserInterface());
               mainF.addUIListeners(this);
-              ((UserInterface)mainF.getPanel()).setMessage("The system is ready to accept transactions");
+              ((UserInterface)mainF.getPanel()).setMessage("Ready to accept transactions");
                }
               else{
               ((LoginScreen)mainF.getPanel()).setMessage("Invalid Login Credentials");}
@@ -53,7 +54,8 @@ public class Controller implements ActionListener {
               double result;
               result = model.convert(((UserInterface)mainF.getPanel()).getFromCurrency(),((UserInterface)mainF.getPanel()).getToCurrency(), ((UserInterface)mainF.getPanel()).getConversionAmount());
               if(result!=0){
-              ((UserInterface)mainF.getPanel()).setMessage("Successfully purchaced"+result+" "+((UserInterface)mainF.getPanel()).getToCurrency());
+                  DecimalFormat df=new DecimalFormat("#.0");
+              ((UserInterface)mainF.getPanel()).setMessage("Successfully purchaced "+df.format(result)+" "+((UserInterface)mainF.getPanel()).getToCurrency());
               System.out.println("success");}
               else{
                ((UserInterface)mainF.getPanel()).setMessage("Not Enough funds");      

@@ -23,12 +23,12 @@ public class SQLiteAccountDAO implements AccountDAO {
     private  Connection c;
     
     public SQLiteAccountDAO(){
-    //c=SQLiteDAOFactory.createConnection();
+    
     }
     
     public SQLiteAccountDAO(String username){
         this.username=username;
-        //c=SQLiteDAOFactory.createConnection();
+      
     }
     
     @Override
@@ -45,12 +45,11 @@ public class SQLiteAccountDAO implements AccountDAO {
            pounds=rs.getDouble("pounds");
            euros=rs.getDouble("euros");
            dollars=rs.getDouble("dolalrs");
-          //Transctions
-       
+          
              }
            rs.close();
            stmt.close();
-           //c.close();
+          
         }
         catch (SQLException e){
                                }
@@ -68,7 +67,7 @@ public class SQLiteAccountDAO implements AccountDAO {
                              "' WHERE username='"+acc.getUsername()+"';");
            c.commit(); 
            stmt.close();
-           //c.close();
+         
         }
         catch (SQLException e){
                 }
