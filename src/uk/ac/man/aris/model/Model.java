@@ -10,8 +10,6 @@ import uk.ac.man.aris.dao.Account;
 import uk.ac.man.aris.dao.AccountDAO;
 import uk.ac.man.aris.dao.Authentication;
 import uk.ac.man.aris.dao.DAOFactory;
-import uk.ac.man.aris.dao.SQLiteAccountDAO;
-import uk.ac.man.aris.dao.SQLiteDAOFactory;
 
 /**
  * Model class that exposes the backend of the application to the Controller through a transaction interface
@@ -22,12 +20,12 @@ public class Model {
     private final double euroToDollarRate=1.37;
     private final double euroToPoundRate=0.83;
     private final double dollarToPoundRate=0.60;
-    private Account account;
-    private final DAOFactory sqliteFactory;
-    private AccountDAO accountDAO;
+    private Account account;                  //transfer object
+    private final DAOFactory sqliteFactory;   //abstract factory
+    private AccountDAO accountDAO;            //Interface
     
     public Model(){
-    sqliteFactory=DAOFactory.getDAOFactory(1);
+    sqliteFactory=DAOFactory.getDAOFactory(1);  //SQLite=1;
     accountDAO=sqliteFactory.getAccountDAO();
     }
    
@@ -37,7 +35,7 @@ public class Model {
         if(Authentication.authenticate(username, password)){
         auth=true;
         account=accountDAO.getAccount(username);
-       // System.out.println(account.getUsername()+" "+account.getEuros());
+       
         }
         return auth;}
     

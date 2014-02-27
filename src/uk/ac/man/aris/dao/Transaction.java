@@ -18,13 +18,13 @@ public class Transaction {
     private  final double amountDollars;
     private  final double amountEuros;
     private  final double amountPounds;
-    private  final Timestamp time;
+    private  final int time;
     
     public Transaction() throws Exception{
         throw new Exception("NUll constructor not allowed");
      }
     
-    public Transaction(String from,String to,double dol,double eur,double gbp,Timestamp time){
+    public Transaction(String from,String to,double dol,double eur,double gbp,int time){
     this.fromID=from;
     this.toID=to;
     this.amountDollars=dol;
@@ -56,7 +56,7 @@ public class Transaction {
         return amountPounds;
     }
 
-    public Timestamp getTime() {
+    public int getTime() {
         return time;
     }
     

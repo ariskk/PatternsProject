@@ -10,7 +10,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 /**
- *
+ * Database connection using the singleton pattern to avoid contention.
  * @author aris
  */
 public class SQLiteConnectionSingleton {

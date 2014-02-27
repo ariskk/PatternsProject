@@ -33,7 +33,7 @@ public class SQLiteTransactionDAO implements TransactionDAO {
             stmt.executeQuery("INSERT INTO Transactions (fromUser,toUser,timestamp,amountDollars,amountEuros,AmountPounds) VALUES ('"+username+"','"+
                              toUsername+"','"+0+"','"+dollars+"','"+euros+"','"+pounds+"');");
              stmt.close();
-             c.close();   
+             //c.close();   
              } catch (SQLException ex) {
              Logger.getLogger(SQLiteTransactionDAO.class.getName()).log(Level.SEVERE, null, ex);
              }
@@ -45,38 +45,47 @@ public class SQLiteTransactionDAO implements TransactionDAO {
         double pounds=0,euros=0,dollars=0;
        
         try {  
-          Statement stmt = c.createStatement();
-          ResultSet rs = stmt.executeQuery( "SELECT * FROM Accounts WHERE username='" +0+"';");
-          while ( rs.next() ) {
-         
-           String pass=rs.getString("password");
-           pounds=rs.getDouble("pounds");
-           euros=rs.getDouble("euros");
-           dollars=rs.getDouble("dolalrs");
-          //Transctions
-       
-           
-               }
-           rs.close();
-           stmt.close();
+            try (Statement stmt = c.createStatement()) {
+                ResultSet rs = stmt.executeQuery( "SELECT * FROM Accounts WHERE username='" +0+"';");
+                while ( rs.next() ) {
+                    
+                    String pass=rs.getString("password");
+                    pounds=rs.getDouble("pounds");
+                    euros=rs.getDouble("euros");
+                    dollars=rs.getDouble("dolalrs");
+                    //Transctions
+                    
+                    
+                }
+                rs.close();
+            }
            c.close();}
         catch (SQLException e){
                 }
-            return new Transaction(null,null,dollars,euros,pounds,null);
+            return new Transaction(null,null,dollars,euros,pounds,0);
     }
 
     @Override
     public ArrayList<Transaction> getTransactions(String user) {
        Statement stmt;
+       ArrayList transactions=new ArrayList();
+       Transaction transaction;
         try {
             stmt = c.createStatement();
-            stmt.executeQuery("SELECT * FROM Transactions WHERE fromUser='"+user+"';");
+           try (ResultSet rs = stmt.executeQuery("SELECT * FROM Transactions WHERE fromUser='"+user+"';")) {
+               while (rs.next()){
+                   transaction=new Transaction(rs.getString("fromUser"),rs.getString("toUser"),rs.getDouble("amountDollars"),
+                           rs.getDouble("amountEuros"),rs.getDouble("amountPounds"),rs.getInt("timestamp"));
+                   
+                   transactions.add(transaction);
+               }
+           }
              stmt.close();
              c.close();   
              } catch (SQLException ex) {
              Logger.getLogger(SQLiteTransactionDAO.class.getName()).log(Level.SEVERE, null, ex);
              }
-        return null;
+        return transactions;
     }
 
     

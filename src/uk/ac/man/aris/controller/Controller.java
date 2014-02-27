@@ -16,7 +16,7 @@ import uk.ac.man.aris.ui.mainFrame;
 
 /**
  * Initialize the Controller class that mediates between the UI and the Model/DB
- * to do introduce a modeler to reduce coupling
+ * 
  * @author aris
  */
 public class Controller implements ActionListener {
