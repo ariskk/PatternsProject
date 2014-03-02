@@ -32,8 +32,8 @@ public class SQLiteTransactionDAO implements TransactionDAO {
         try {
              c=SQLiteConnectionSingleton.getConnection();
             stmt = c.createStatement();
-            Timestamp t=new Timestamp(0);
-            stmt.executeQuery("INSERT INTO Transactions (fromUser,toUser,timestamp,amountDollars,amountEuros,AmountPounds) VALUES ('"+username+"','"+
+            Timestamp t=new Timestamp(System.currentTimeMillis());
+            stmt.executeUpdate("INSERT INTO Transactions (fromUser,toUser,timestamp,amountDollars,amountEuros,AmountPounds) VALUES ('"+username+"','"+
                              toUsername+"','"+t.getTime()+"','"+dollars+"','"+euros+"','"+pounds+"');");
              stmt.close();
              //c.close();   
@@ -56,9 +56,7 @@ public class SQLiteTransactionDAO implements TransactionDAO {
                     pounds=rs.getDouble("pounds");
                     euros=rs.getDouble("euros");
                     dollars=rs.getDouble("dolalrs");
-                    //Transctions
-                    
-                    
+                   
                 }
                 rs.close();
             }
