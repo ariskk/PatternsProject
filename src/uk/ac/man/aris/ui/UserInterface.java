@@ -26,6 +26,7 @@ public class UserInterface extends JPanel{
     private final JLabel submit;
     private final JLabel toLabel;
     private final JLabel funds;
+    private final JTextArea balance;
     private final JTextArea messages;
     private final JTextField from;
     private final JLabel to;
@@ -45,6 +46,7 @@ public class UserInterface extends JPanel{
     toLabel=new JLabel("to");
     funds=new JLabel("Amount");
     messages=new JTextArea(5,19);
+    balance=new JTextArea(3,12);
     from=new JTextField(7);
     to=new JLabel(); 
     amount=new JTextField(7);
@@ -89,7 +91,9 @@ public class UserInterface extends JPanel{
         this.add(to,con);
         con.gridx=0;
         con.gridy=2;
-        this.add(convertButton,con);
+         this.add(convertButton,con);
+        con.gridx=1;
+        this.add(balance,con);
         /*Submit payments*/
         con.gridx=0;
         con.gridy=3;
@@ -124,6 +128,9 @@ public class UserInterface extends JPanel{
     
     public void setMessage(String msg){
     messages.setText(msg);}
+    
+    public void setBalance(String bal){
+    balance.setText(bal);}
     
     public void setToText(String txt){
     to.setText(txt);}

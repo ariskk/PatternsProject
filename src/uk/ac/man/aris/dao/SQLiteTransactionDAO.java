@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,18 +21,20 @@ import java.util.logging.Logger;
  * @author aris
  */
 public class SQLiteTransactionDAO implements TransactionDAO {
-    private final Connection c;
+    private Connection c;
     
     public SQLiteTransactionDAO(){
-    c=SQLiteConnectionSingleton.getConnection();}
+    }
     
     @Override
     public void createTransaction(String username,String toUsername,double dollars,double euros,double pounds) {
         Statement stmt;
         try {
+             c=SQLiteConnectionSingleton.getConnection();
             stmt = c.createStatement();
+            Timestamp t=new Timestamp(0);
             stmt.executeQuery("INSERT INTO Transactions (fromUser,toUser,timestamp,amountDollars,amountEuros,AmountPounds) VALUES ('"+username+"','"+
-                             toUsername+"','"+0+"','"+dollars+"','"+euros+"','"+pounds+"');");
+                             toUsername+"','"+t.getTime()+"','"+dollars+"','"+euros+"','"+pounds+"');");
              stmt.close();
              //c.close();   
              } catch (SQLException ex) {

@@ -45,6 +45,8 @@ public class Controller implements ActionListener {
               mainF.setPanel(new UserInterface());
               mainF.addUIListeners(this);
               ((UserInterface)mainF.getPanel()).setMessage("Ready to accept transactions");
+              ((UserInterface)mainF.getPanel()).setBalance(model.balance());
+              
                }
               else{
               ((LoginScreen)mainF.getPanel()).setMessage("Invalid Login Credentials");}
@@ -56,7 +58,8 @@ public class Controller implements ActionListener {
               if(result!=0){
                   DecimalFormat df=new DecimalFormat("#.0");
               ((UserInterface)mainF.getPanel()).setMessage("Successfully purchaced "+df.format(result)+" "+((UserInterface)mainF.getPanel()).getToCurrency());
-              System.out.println("success");}
+              System.out.println("success");
+              ((UserInterface)mainF.getPanel()).setBalance(model.balance());}
               else{
                ((UserInterface)mainF.getPanel()).setMessage("Not Enough funds");      
               System.out.println("not success");}
@@ -65,7 +68,8 @@ public class Controller implements ActionListener {
                 
             case "Submit":{
                 if(model.submit(((UserInterface)mainF.getPanel()).getSubmissionUsername(),((UserInterface)mainF.getPanel()).getSubmitCurrency(),((UserInterface)mainF.getPanel()).getSubmissionAmount()))
-                {((UserInterface)mainF.getPanel()).setMessage("Transaction completed successfully");  }
+                {((UserInterface)mainF.getPanel()).setMessage("Transaction completed successfully"); 
+                ((UserInterface)mainF.getPanel()).setBalance(model.balance());}
                 else
                 {((UserInterface)mainF.getPanel()).setMessage("Not Enough funds");  }
              

@@ -6,10 +6,13 @@
 
 package uk.ac.man.aris.model;
 
+import java.text.DecimalFormat;
 import uk.ac.man.aris.dao.Account;
 import uk.ac.man.aris.dao.AccountDAO;
 import uk.ac.man.aris.dao.Authentication;
 import uk.ac.man.aris.dao.DAOFactory;
+import uk.ac.man.aris.dao.Transaction;
+import uk.ac.man.aris.dao.TransactionDAO;
 
 /**
  * Model class that exposes the backend of the application to the Controller through a transaction interface
@@ -21,12 +24,15 @@ public class Model {
     private final double euroToPoundRate=0.83;
     private final double dollarToPoundRate=0.60;
     private Account account;                  //transfer object
+    private Transaction transaction;          //transfer object
     private final DAOFactory sqliteFactory;   //abstract factory
     private AccountDAO accountDAO;            //Interface
+    private TransactionDAO transactionDAO;
     
     public Model(){
     sqliteFactory=DAOFactory.getDAOFactory(1);  //SQLite=1;
     accountDAO=sqliteFactory.getAccountDAO();
+    transactionDAO=sqliteFactory.getTranscactionDAO();
     }
    
     
@@ -39,6 +45,10 @@ public class Model {
         }
         return auth;}
     
+    public String balance(){
+        DecimalFormat df=new DecimalFormat("#.0");
+    return "Balance \nDollars:"+df.format(account.getDollars())+"\n Euros:"+df.format(account.getEuros())+"\n Pounds:"+df.format(account.getPounds());}
+    
     public double convert (String fromCurrency,String toCurrency,double amount){
         double result=0;
     switch(fromCurrency){
@@ -50,6 +60,8 @@ public class Model {
                          account.setEuros(account.getEuros()-amount);
                          account.setDollars(account.getDollars()+result);
                          accountDAO.upedateAccount(account);
+                        // transaction=new Transaction(account.getUsername(),account.getUsername(),result,-1*amount,0,0);
+                         transactionDAO.createTransaction(account.getUsername(),account.getUsername(),result,-1*amount,0);
                      }
                           break;
                      case "Pounds":{
@@ -57,6 +69,7 @@ public class Model {
                         account.setEuros(account.getEuros()-amount);
                         account.setPounds(account.getPounds()+result);
                         accountDAO.upedateAccount(account);
+                        transactionDAO.createTransaction(account.getUsername(),account.getUsername(),0,-1*amount,result);
                      }
                          
                          break;
@@ -73,6 +86,7 @@ public class Model {
                          account.setDollars(account.getDollars()-amount);
                          account.setEuros(account.getEuros()+result);
                           accountDAO.upedateAccount(account);
+                          transactionDAO.createTransaction(account.getUsername(),account.getUsername(),-1*amount,result,0);
                      }
                          break;
                      case "Pounds":{
@@ -80,6 +94,7 @@ public class Model {
                          account.setDollars(account.getDollars()-amount);
                          account.setPounds(account.getPounds()+result);
                          accountDAO.upedateAccount(account);
+                         transactionDAO.createTransaction(account.getUsername(),account.getUsername(),-1*amount,0,result);
                      }
                          break;
                   }
@@ -93,6 +108,7 @@ public class Model {
                          account.setPounds(account.getPounds()-amount);
                          account.setDollars(account.getDollars()+result);
                          accountDAO.upedateAccount(account);
+                         transactionDAO.createTransaction(account.getUsername(),account.getUsername(),result,0,-1*amount);
                      }
                          break;
                      case "Euros":{
@@ -100,6 +116,7 @@ public class Model {
                           account.setPounds(account.getPounds()-amount);
                           account.setEuros(account.getEuros()+result);
                           accountDAO.upedateAccount(account);
+                          transactionDAO.createTransaction(account.getUsername(),account.getUsername(),0,result,-1*amount);
                      }
                          break;
                    }
@@ -122,6 +139,7 @@ public class Model {
               //add transaction update object
                accountDAO.upedateAccount(account);
                accountDAO.upedateAccount(clientAccount);
+               transactionDAO.createTransaction(account.getUsername(),clientAccount.getUsername(),0,amount,0);
                return true;
            }
         
@@ -133,6 +151,7 @@ public class Model {
                
                accountDAO.upedateAccount(account);
                accountDAO.upedateAccount(clientAccount);
+               transactionDAO.createTransaction(account.getUsername(),account.getUsername(),amount,0,0);
                return true;
            
            }
@@ -144,6 +163,7 @@ public class Model {
                
                accountDAO.upedateAccount(account);
                accountDAO.upedateAccount(clientAccount);
+               transactionDAO.createTransaction(account.getUsername(),account.getUsername(),0,0,amount);
                return true;
            }
         
