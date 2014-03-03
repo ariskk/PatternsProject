@@ -6,7 +6,7 @@
 
 package uk.ac.man.aris.model;
 
-import uk.ac.man.aris.dao.Transaction;
+
 
 /**
  *
@@ -18,7 +18,7 @@ public class Validator {
     
     }
     
-    public boolean validate(Transaction transaction){
+    public boolean validate(){
         
         
     return true;}

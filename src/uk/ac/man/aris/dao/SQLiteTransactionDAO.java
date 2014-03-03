@@ -72,6 +72,7 @@ public class SQLiteTransactionDAO implements TransactionDAO {
        ArrayList transactions=new ArrayList();
        Transaction transaction;
         try {
+            c=SQLiteConnectionSingleton.getConnection();
             stmt = c.createStatement();
            try (ResultSet rs = stmt.executeQuery("SELECT * FROM Transactions WHERE fromUser='"+user+"';")) {
                while (rs.next()){
@@ -82,7 +83,7 @@ public class SQLiteTransactionDAO implements TransactionDAO {
                }
            }
              stmt.close();
-             c.close();   
+             //c.close();   
              } catch (SQLException ex) {
              Logger.getLogger(SQLiteTransactionDAO.class.getName()).log(Level.SEVERE, null, ex);
              }

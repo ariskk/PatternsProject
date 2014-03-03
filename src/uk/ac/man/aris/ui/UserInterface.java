@@ -146,6 +146,7 @@ public class UserInterface extends JPanel{
     
     public double getConversionAmount(){
     return Double.parseDouble(from.getText());}
+    
     public double getSubmissionAmount(){
     return Double.parseDouble(amount.getText());}
     

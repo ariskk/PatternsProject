@@ -7,6 +7,7 @@
 package uk.ac.man.aris.model;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import uk.ac.man.aris.dao.Account;
 import uk.ac.man.aris.dao.AccountDAO;
 import uk.ac.man.aris.dao.Authentication;
@@ -45,9 +46,19 @@ public class Model {
         }
         return auth;}
     
-    public String balance(){
+    public String getBalance(){
         DecimalFormat df=new DecimalFormat("#.0");
     return "Balance \nDollars:"+df.format(account.getDollars())+"\n Euros:"+df.format(account.getEuros())+"\n Pounds:"+df.format(account.getPounds());}
+    
+    public String getTransactions(){
+    String transactions=new String();
+    ArrayList<Transaction> list=transactionDAO.getTransactions(account.getUsername());
+    while(list.iterator().hasNext()){
+        transactions.concat(list.iterator().next().getFromID()+list.iterator().next().getToID()+list.iterator().next().getAmountDollars()+list.iterator().next().getAmountEuros()+
+                      list.iterator().next().getAmountPounds()+"\n");
+    }
+    System.out.println(transactions);
+    return transactions;}
     
     public double convert (String fromCurrency,String toCurrency,double amount){
         double result=0;
@@ -60,7 +71,6 @@ public class Model {
                          account.setEuros(account.getEuros()-amount);
                          account.setDollars(account.getDollars()+result);
                          accountDAO.upedateAccount(account);
-                        // transaction=new Transaction(account.getUsername(),account.getUsername(),result,-1*amount,0,0);
                          transactionDAO.createTransaction(account.getUsername(),account.getUsername(),result,-1*amount,0);
                      }
                           break;
@@ -136,7 +146,6 @@ public class Model {
            if(account.getEuros()>amount){
                account.setEuros(account.getEuros()-amount);
                clientAccount.setEuros(clientAccount.getEuros()+amount);
-              //add transaction update object
                accountDAO.upedateAccount(account);
                accountDAO.upedateAccount(clientAccount);
                transactionDAO.createTransaction(account.getUsername(),clientAccount.getUsername(),0,amount,0);

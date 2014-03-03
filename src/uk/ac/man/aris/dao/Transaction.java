@@ -6,7 +6,7 @@
 
 package uk.ac.man.aris.dao;
 
-import java.sql.Timestamp;
+
 
 /**
  * A transaction transfer object. Immutable since a transaction has happened 

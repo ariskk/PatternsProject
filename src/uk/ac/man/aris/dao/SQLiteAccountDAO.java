@@ -44,7 +44,7 @@ public class SQLiteAccountDAO implements AccountDAO {
            
            pounds=rs.getDouble("pounds");
            euros=rs.getDouble("euros");
-           dollars=rs.getDouble("dolalrs");
+           dollars=rs.getDouble("dollars");
           
              }
            rs.close();
