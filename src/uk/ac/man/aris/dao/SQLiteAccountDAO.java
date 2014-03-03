@@ -10,12 +10,12 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Timestamp;
+
 
 /**
  * Account DAO implementation for SQLite
  * Accesses the SQLite to retrieve the account and create the account object. Called by the factory
- * TODO ADD TRANSACTIONS and fix timestamp bug
+ * 
  * @author aris
  */
 public class SQLiteAccountDAO implements AccountDAO {
@@ -31,6 +31,7 @@ public class SQLiteAccountDAO implements AccountDAO {
       
     }
     
+    //Retrieves the data related to an account and creates the Account transfer object
     @Override
     public Account getAccount(String user) {
        
@@ -55,9 +56,10 @@ public class SQLiteAccountDAO implements AccountDAO {
                                }
         return new Account(user,dollars,euros,pounds,null);
     }
-
+     
+    //receives an Account transfer object and updates the databse entry corresponding to that object.
     @Override
-    public void upedateAccount(Account acc) {
+    public void updateAccount(Account acc) {
      
         try {  
           c=SQLiteConnectionSingleton.getConnection();  
@@ -67,12 +69,12 @@ public class SQLiteAccountDAO implements AccountDAO {
                              "' WHERE username='"+acc.getUsername()+"';");
            c.commit(); 
            stmt.close();
-         
-        }
+               }
         catch (SQLException e){
                 }
     }
 
+      //Not supported by the prototype version
     @Override
     public void createAccount() {
         throw new UnsupportedOperationException("Not supported yet."); //Not supported,since there is no register UI

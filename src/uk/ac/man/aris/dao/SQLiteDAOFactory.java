@@ -7,8 +7,8 @@
 package uk.ac.man.aris.dao;
 
 /**
- *Factory implementation for SQLite
- * Calls DAOs to get the Account and Transaction DAOs
+ * Factory implementation for SQLite
+ * Return Transaction and Account DAOs
  * @author aris
  */
 public class SQLiteDAOFactory extends DAOFactory {

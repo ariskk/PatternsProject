@@ -17,7 +17,7 @@ import uk.ac.man.aris.ui.mainFrame;
 
 /**
  * Initialize the Controller class that mediates between the UI and the Model/DB
- * 
+ * Implements the ActionListener Interface
  * @author aris
  */
 public class Controller implements ActionListener {

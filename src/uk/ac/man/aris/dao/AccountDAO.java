@@ -12,6 +12,6 @@ package uk.ac.man.aris.dao;
  */
 public interface AccountDAO {
     public Account getAccount(String user);
-    public void upedateAccount(Account acc);
+    public void updateAccount(Account acc);
     public void createAccount();
 }

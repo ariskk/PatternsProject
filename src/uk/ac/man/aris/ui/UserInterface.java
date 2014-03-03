@@ -18,7 +18,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 /**
- * TODO : messages next to buttons and maybe transaction history 
+ * Main user interface
  * @author mbaxkak4
  */
 public class UserInterface extends JPanel{

@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 
 /**
  *Transaction DAO implementation for SQLite
- * Accesses the SQLite to retrieve the transactions and create the transaction object. Called by the factory
+ * Accesses the SQLite to retrieve the transactions and create the transaction transfer object.
  * @author aris
  */
 public class SQLiteTransactionDAO implements TransactionDAO {
@@ -26,23 +26,26 @@ public class SQLiteTransactionDAO implements TransactionDAO {
     public SQLiteTransactionDAO(){
     }
     
+    //creates a database entry for each transaction performed
     @Override
     public void createTransaction(String username,String toUsername,double dollars,double euros,double pounds) {
         Statement stmt;
         try {
              c=SQLiteConnectionSingleton.getConnection();
-            stmt = c.createStatement();
-            Timestamp t=new Timestamp(System.currentTimeMillis());
-            stmt.executeUpdate("INSERT INTO Transactions (fromUser,toUser,timestamp,amountDollars,amountEuros,AmountPounds) VALUES ('"+username+"','"+
+             stmt = c.createStatement();
+             Timestamp t=new Timestamp(System.currentTimeMillis());
+             stmt.executeUpdate("INSERT INTO transactions (fromUser,toUser,timestamp,amountDollars,amountEuros,amountPounds) VALUES ('"+username+"','"+
                              toUsername+"','"+t.getTime()+"','"+dollars+"','"+euros+"','"+pounds+"');");
+             c.commit();
              stmt.close();
-             //c.close();   
+               
              } catch (SQLException ex) {
              Logger.getLogger(SQLiteTransactionDAO.class.getName()).log(Level.SEVERE, null, ex);
              }
            
     }
-
+     
+     //Get a specific transaction.Not useful in the oficial version
     @Override
     public Transaction getTransaction() {
         double pounds=0,euros=0,dollars=0;
@@ -66,6 +69,7 @@ public class SQLiteTransactionDAO implements TransactionDAO {
             return new Transaction(null,null,dollars,euros,pounds,0);
     }
 
+     //Get all the transaction in an ArrayList of Transaction transfer objects
     @Override
     public ArrayList<Transaction> getTransactions(String user) {
        Statement stmt;
@@ -82,8 +86,7 @@ public class SQLiteTransactionDAO implements TransactionDAO {
                    transactions.add(transaction);
                }
            }
-             stmt.close();
-             //c.close();   
+             stmt.close();            
              } catch (SQLException ex) {
              Logger.getLogger(SQLiteTransactionDAO.class.getName()).log(Level.SEVERE, null, ex);
              }
