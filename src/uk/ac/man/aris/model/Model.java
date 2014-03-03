@@ -8,6 +8,7 @@ package uk.ac.man.aris.model;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Iterator;
 import uk.ac.man.aris.dao.Account;
 import uk.ac.man.aris.dao.AccountDAO;
 import uk.ac.man.aris.dao.Authentication;
@@ -50,14 +51,16 @@ public class Model {
         DecimalFormat df=new DecimalFormat("#.0");
     return "Balance \nDollars:"+df.format(account.getDollars())+"\n Euros:"+df.format(account.getEuros())+"\n Pounds:"+df.format(account.getPounds());}
     
-    public String getTransactions(){
-    String transactions=new String();
+    public StringBuilder getTransactions(){
+        
+    StringBuilder transactions=new StringBuilder();
     ArrayList<Transaction> list=transactionDAO.getTransactions(account.getUsername());
-    while(list.iterator().hasNext()){
-        transactions.concat(list.iterator().next().getFromID()+list.iterator().next().getToID()+list.iterator().next().getAmountDollars()+list.iterator().next().getAmountEuros()+
-                      list.iterator().next().getAmountPounds()+"\n");
-    }
-    System.out.println(transactions);
+    DecimalFormat df=new DecimalFormat("#.0");
+    
+    for(int i=0;i<list.size();i++){
+        transactions.append(list.get(i).getFromID()+" "+list.get(i).getToID()+" $"+df.format(list.get(i).getAmountDollars())
+                +" €"+df.format(list.get(i).getAmountEuros())+"  £"+ df.format(list.get(i).getAmountPounds())+"\n");
+      }
     return transactions;}
     
     public double convert (String fromCurrency,String toCurrency,double amount){

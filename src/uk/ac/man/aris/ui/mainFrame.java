@@ -34,7 +34,7 @@ public final class mainFrame extends JFrame{
         
           /* Set-Up frame size and position  */
          this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-         this.setSize(new Dimension(700,700));
+         this.setSize(new Dimension(900,800));
          Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
          this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
          this.setTitle("Welcome to UoM on-line Account Manager");

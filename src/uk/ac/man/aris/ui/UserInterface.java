@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -28,6 +29,7 @@ public class UserInterface extends JPanel{
     private final JLabel funds;
     private final JTextArea balance;
     private final JTextArea messages;
+    private final JTextArea history;
     private final JTextField from;
     private final JLabel to;
     private final JTextField amount;
@@ -46,6 +48,7 @@ public class UserInterface extends JPanel{
     toLabel=new JLabel("to");
     funds=new JLabel("Amount");
     messages=new JTextArea(5,19);
+    history=new JTextArea(5,19);
     balance=new JTextArea(3,12);
     from=new JTextField(7);
     to=new JLabel(); 
@@ -113,6 +116,9 @@ public class UserInterface extends JPanel{
         this.add(submitButton,con);
         con.gridy=5;
         this.add(messages,con);
+        con.gridx=1;
+        JScrollPane scrollPane = new JScrollPane(history);
+        this.add(scrollPane,con);
         
         
     }
@@ -131,6 +137,9 @@ public class UserInterface extends JPanel{
     
     public void setBalance(String bal){
     balance.setText(bal);}
+    
+    public void setHistory(String historyString){
+    history.setText(historyString);}
     
     public void setToText(String txt){
     to.setText(txt);}
